@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ShortUrl = require("./models/shortUrl");
 const User = require("./models/User");
 const bcrypt = require("bcryptjs");
+const shortId = require("shortid");
 
 const cors = require("cors");
 
@@ -20,28 +21,28 @@ mongoose.connect(
   }
 );
 
-app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", async (req, res) => {
+app.get("/getAllUrls", async (req, res) => {
   const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls: shortUrls });
+  return res.json(shortUrls);
 });
 
 app.post("/shortUrls", async (req, res) => {
-  await ShortUrl.create({ full: req.body.fullUrl });
+  const { full } = req.body;
+  const url = await ShortUrl.create({ full });
 
-  res.redirect("/");
+  return res.json(url);
 });
 
-app.get("/:shortUrl", async (req, res) => {
+app.get("/url/:shortUrl", async (req, res) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
   if (shortUrl == null) return res.sendStatus(404);
 
   shortUrl.clicks++;
   shortUrl.save();
 
-  res.redirect(shortUrl.full);
+  return res.json({ full: shortUrl.full });
 });
 
 app.post("/registerUser", async (req, res) => {
