@@ -7,6 +7,7 @@ const { getUserUrls } = require("./controllers/getUserUrls");
 const { createShortUrl } = require("./controllers/createShortUrl");
 const { createUser } = require("./controllers/createUser");
 const { login } = require("./controllers/login");
+const { deleteUserUrl } = require("./controllers/deleteUserUrl");
 
 const cors = require("cors");
 
@@ -37,5 +38,7 @@ app.get("/url/:shortUrl", getShortUrl);
 app.post("/createUser", createUser);
 
 app.post("/login", login);
+
+app.delete("/deleteUserUrl/:short", deleteUserUrl);
 
 app.listen(process.env.PORT || 5000);
