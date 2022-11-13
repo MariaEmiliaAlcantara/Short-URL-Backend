@@ -16,7 +16,7 @@ const login = async (req, res) => {
     return res.sendStatus(404);
   }
 
-  return res.json({ email });
+  return res.json({ email, name: user.name });
 };
 
 module.exports = { login };

@@ -8,7 +8,11 @@ const getShortUrl = async (req, res) => {
   shortUrl.clicks++;
   shortUrl.save();
 
-  return res.json({ full: shortUrl.full });
+  return res.json({
+    full: shortUrl.full,
+    short: shortUrl.short,
+    clicks: shortUrl.clicks,
+  });
 };
 
 module.exports = { getShortUrl };
