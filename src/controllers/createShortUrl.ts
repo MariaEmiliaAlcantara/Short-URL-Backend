@@ -1,6 +1,8 @@
-const ShortUrl = require("../models/shortUrl");
+import  { Request, Response } from "express";
+import { ShortUrl } from "../models/shortUrl"
 
-const createShortUrl = async (req, res) => {
+
+export const createShortUrl = async (req: Request, res: Response) => {
   const { full, email } = req.body;
 
   if (email) {
@@ -11,8 +13,4 @@ const createShortUrl = async (req, res) => {
   }
   const url = await ShortUrl.create({ full, email: email || "" });
   return res.json({ full: url.full, short: url.short });
-};
-
-module.exports = {
-  createShortUrl,
 };

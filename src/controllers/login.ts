@@ -1,8 +1,9 @@
-const sign = require("jsonwebtoken").sign;
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
+import { Request, Response } from "express";
+import { User } from "../models/User";
+import bcrypt  from "bcryptjs";
 
-const login = async (req, res) => {
+
+export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email: email });
@@ -18,5 +19,3 @@ const login = async (req, res) => {
 
   return res.json({ email, name: user.name });
 };
-
-module.exports = { login };

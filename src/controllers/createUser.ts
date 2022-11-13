@@ -1,7 +1,9 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
+import  { Request, Response } from "express";
+import { User } from "../models/User";
+import bcrypt  from "bcryptjs";
 
-const createUser = async (req, res) => {
+
+export const createUser = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
 
   const foundEmail = await User.findOne({ email: email });
@@ -15,5 +17,3 @@ const createUser = async (req, res) => {
   await User.create({ name, email, password: passwordHash });
   return res.sendStatus(201);
 };
-
-module.exports = { createUser };

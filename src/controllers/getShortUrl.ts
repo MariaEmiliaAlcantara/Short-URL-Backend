@@ -1,6 +1,8 @@
-const ShortUrl = require("../models/shortUrl");
+import { Request, Response } from "express";
+import { ShortUrl } from "../models/shortUrl"
 
-const getShortUrl = async (req, res) => {
+
+export const getShortUrl = async (req: Request, res: Response) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
 
   if (shortUrl == null) return res.sendStatus(404);
@@ -14,5 +16,3 @@ const getShortUrl = async (req, res) => {
     clicks: shortUrl.clicks,
   });
 };
-
-module.exports = { getShortUrl };

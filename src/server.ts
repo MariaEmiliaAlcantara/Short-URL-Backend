@@ -1,15 +1,14 @@
-const express = require("express");
-const mongoose = require("mongoose");
+import express from "express";
+import { connect } from "mongoose";
+import cors from "cors";
 
-const { getShortUrl } = require("./controllers/getShortUrl");
-const { getAllUrls } = require("./controllers/getAllUrls");
-const { getUserUrls } = require("./controllers/getUserUrls");
-const { createShortUrl } = require("./controllers/createShortUrl");
-const { createUser } = require("./controllers/createUser");
-const { login } = require("./controllers/login");
-const { deleteUserUrl } = require("./controllers/deleteUserUrl");
-
-const cors = require("cors");
+import { createShortUrl } from "./controllers/createShortUrl"
+import { createUser } from "./controllers/createUser"
+import { getShortUrl } from "./controllers/getShortUrl"
+import { getAllUrls } from "./controllers/getAllUrls"
+import { getUserUrls } from "./controllers/getUserUrls"
+import { login } from "./controllers/login"
+import { deleteUserUrl } from "./controllers/deleteUserUrl"
 
 const app = express();
 
@@ -17,7 +16,7 @@ app.use(cors());
 
 app.use(express.json());
 
-mongoose.connect(
+connect(
   "mongodb+srv://mariaemila:tub4r40@cluster0.e1cn3fh.mongodb.net/?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
