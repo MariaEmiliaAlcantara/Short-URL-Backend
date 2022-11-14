@@ -9,7 +9,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Express](https://expressjs.com/pt-br/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
-- [Shortid](https://www.docker.com/products/container-runtime)
+- [Nanoid](https://github.com/ai/nanoid)
 
 ## 🚀 Como executar
 
