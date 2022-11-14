@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
-import shortid  from "shortid"
+
+
 
 export interface IShortUrl {
   full: string;
@@ -17,7 +18,6 @@ const shortUrlSchema = new Schema<IShortUrl>(
     short: {
       type: String,
       required: true,
-      default: shortid.generate,
     },
     clicks: {
       type: Number,
@@ -27,7 +27,9 @@ const shortUrlSchema = new Schema<IShortUrl>(
     email: {
       type: String,
       required: false,
-    },
-  });
+    }, 
+  
+  },
+);
 
 export const ShortUrl = model("ShortUrl", shortUrlSchema);
